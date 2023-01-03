@@ -30,7 +30,26 @@ jobs:
         with:
           node-version: 18
           registry-url: https://npm.pkg.github.com/
+          scope: '@open-cafe'
+          
       - run: yarn install --frozen-lockfile
-      - run: yarn publish
+
+      - name: Bump version and push tag
+        id: bump_version
+        uses: phips28/gh-action-bump-version@master
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+         with:
+          minor-wording: add,Adds,new
+          major-wording: MAJOR,cut-major
+          patch-wording: patch,fixes
+          rc-wording: RELEASE,alpha
+
+      - run: |
+          git config --global user.email "${{ github.actor }}@noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          echo "${{ steps.bump_version.outputs.tag }}"
+      - run: yarn version --no-git-tag-version "${{ steps.bump_version.outputs.tag }}" && yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
