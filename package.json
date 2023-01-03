@@ -1,14 +1,14 @@
 {
   "name": "@open-cafe/react.vite-components",
   "private": false,
-  "version": "0.0.21",
+  "version": "0.0.22",
   "license": "MIT",
   "type": "module",
   "main": "./dist/vite-components.umd.js",
   "module": "./dist/vite-components.es.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "/dist"
+    "dist"
   ],
   "exports": {
     ".": {
