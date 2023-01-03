@@ -6,7 +6,7 @@
   "type": "module",
   "main": "./dist/vite-components.umd.js",
   "module": "./dist/vite-components.es.js",
-  "types": "./dist/components/index.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "/dist"
   ],
