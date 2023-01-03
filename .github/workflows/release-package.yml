@@ -31,7 +31,7 @@ jobs:
           node-version: 18
           registry-url: https://npm.pkg.github.com/
           scope: '@open-cafe'
-          
+
       - run: yarn install --frozen-lockfile
 
       - name: Bump version and push tag
@@ -40,7 +40,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
-         with:
+        with:
           minor-wording: add,Adds,new
           major-wording: MAJOR,cut-major
           patch-wording: patch,fixes
