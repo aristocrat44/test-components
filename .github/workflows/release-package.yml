@@ -15,10 +15,7 @@ jobs:
         with:
           node-version: 18
       - run: npm i -g yarn
-      - run: yarn install
-      - run: rm -rf ./dist
-      - run: yarn cache clean
-      - run: yarn build
+      - run: yarn install --frozen-lockfile
 
   publish-gpr:
     needs: build
@@ -52,6 +49,9 @@ jobs:
           git config --global user.email "${{ github.actor }}@noreply.github.com"
           git config --global user.name "${{ github.actor }}"
           echo "${{ steps.bump_version.outputs.tag }}"
+      - run: rm -rf ./dist
+      - run: yarn cache clean
+      - run: yarn build
       - run: yarn version --new-version "${{ steps.bump_version.outputs.tag }}" && yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
