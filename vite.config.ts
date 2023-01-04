@@ -38,4 +38,18 @@ export default defineConfig(() => ({
     emptyOutDir: true,
     target: 'esnext',
   },
+  test: {
+    environment: 'jsdom',
+    include: ['**/*.test.ts', '**/*.test.tsx'],
+    globals: true,
+    setupFiles: './setupVitest.ts',
+    coverage: {
+      provider: 'c8',
+      statements: 95,
+      branches: 90,
+      functions: 90,
+      lines: 95,
+      thresholdAutoUpdate: true,
+    },
+  },
 }));

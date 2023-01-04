@@ -1,11 +1,18 @@
-import { Button as MUIButton } from '@mui/material';
+import {
+  Button as MuiButton,
+  ButtonProps as MuiButtonProps,
+} from '@mui/material';
 
-const Button = () => {
-  return (
-    <MUIButton variant="contained" size="large">
-      Button tag
-    </MUIButton>
-  );
-};
+// Only include variant, size, and color
+type ButtonBaseProps = Pick<MuiButtonProps, 'variant' | 'size' | 'color'>;
 
-export default Button;
+// Use all except disableRipple
+// type ButtonBaseProps = Omit<MuiButtonProps, "disableRipple">;
+
+export interface ButtonProps extends ButtonBaseProps {
+  label: string;
+}
+
+export const Button = ({ label, ...rest }: ButtonProps) => (
+  <MuiButton {...rest}>{label}</MuiButton>
+);
