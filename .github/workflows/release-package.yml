@@ -1,11 +1,12 @@
 name: React Vite Component Package
 
 on:
-  release:
-    types: [created]
+  pull_request:
+    branches: [main, development]
 
 jobs:
   build:
+    if: github.event.pull_request.merged == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       packages: write
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -50,6 +51,6 @@ jobs:
           git config --global user.email "${{ github.actor }}@noreply.github.com"
           git config --global user.name "${{ github.actor }}"
           echo "${{ steps.bump_version.outputs.tag }}"
-      - run: yarn version --no-git-tag-version "${{ steps.bump_version.outputs.tag }}" && yarn publish
+      - run: yarn version --new-version "${{ steps.bump_version.outputs.tag }}" && yarn publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
