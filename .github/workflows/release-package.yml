@@ -3,6 +3,7 @@ name: React Vite Component Package
 on:
   pull_request:
     branches: [main, development]
+    types: [closed]
 
 jobs:
   build:
