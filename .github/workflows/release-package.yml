@@ -1,11 +1,12 @@
 name: React Vite Component Package
 
 on:
-  push:
-    branches: [main, development, workflow-for-publish]
+  pull_request:
+    branches: [main, development]
 
 jobs:
   build:
+    if: github.event.pull_request.merged == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
