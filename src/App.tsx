@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Appbar from './components/Appbar';
 import Popover from './components/Popover';
 
+//  do not delete this .. you can test components in localhost from here
 function App() {
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
