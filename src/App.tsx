@@ -1,7 +1,7 @@
 import { OutlinedInput } from '@mui/material';
 import Container from './components/Container';
 import { Button } from './index';
-import { AddIcon } from './icons';
+import MuiIcons from './icons';
 import Typography from './components/Typography';
 import Drawer from './components/Drawer';
 import { useState } from 'react';
@@ -11,6 +11,8 @@ import Popover from './components/Popover';
 function App() {
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const { AddIcon } = MuiIcons();
 
   const handlePopoverClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
