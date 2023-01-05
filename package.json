@@ -1,5 +1,5 @@
 {
-  "name": "@open-cafe/react.vite-components",
+  "name": "@getmiferia/vite.react-components",
   "private": false,
   "version": "0.3.4",
   "license": "MIT",
@@ -59,6 +59,6 @@
     "vitest": "^0.26.2"
   },
   "publishConfig": {
-    "@open-cafe:registry": "https://npm.pkg.github.com"
+    "@getmiferia:registry": "https://npm.pkg.github.com"
   }
 }
