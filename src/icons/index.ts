@@ -7,13 +7,17 @@ import CloseIcon from '@mui/icons-material/Close';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
-export {
-  AddIcon,
-  EditIcon,
-  DeleteIcon,
-  LockOpenIcon,
-  PersonIcon,
-  CloseIcon,
-  SettingsIcon,
-  PowerSettingsNewIcon,
+const MuiIcons = () => {
+  return {
+    AddIcon,
+    EditIcon,
+    DeleteIcon,
+    LockOpenIcon,
+    PersonIcon,
+    CloseIcon,
+    SettingsIcon,
+    PowerSettingsNewIcon,
+  };
 };
+
+export default MuiIcons;

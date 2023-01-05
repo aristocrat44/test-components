@@ -1,7 +1,7 @@
 import { createTheme as createMuiTheme } from '@mui/material';
 import { darkPalette, lightPalette } from './palette';
 
-export const createTheme = (mode: 'dark' | 'light') => {
+const createTheme = (mode: 'dark' | 'light') => {
   const palette = mode === 'dark' ? darkPalette : lightPalette;
 
   // Create base theme
@@ -12,3 +12,5 @@ export const createTheme = (mode: 'dark' | 'light') => {
   // Inject base theme to be used in components
   return createMuiTheme(baseTheme);
 };
+
+export default createTheme;

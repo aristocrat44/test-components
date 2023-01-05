@@ -1,27 +1,15 @@
-import { Button, ButtonProps } from './components/Button';
-import * as MuiIcons from './icons';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme } from './utils/theme';
-import Appbar from './components/Appbar';
-import Container from './components/Container';
-import Drawer from './components/Drawer';
-import OutlinedInput from './components/OutlinedInput';
-import Popover from './components/Popover';
-import Typography from './components/Typography';
+// Components
+export { default as Button } from './components/Button';
 
-// Component
-export {
-  Button,
-  MuiIcons,
-  Appbar,
-  Container,
-  Drawer,
-  OutlinedInput,
-  Popover,
-  Typography,
-};
+export { default as createTheme } from './utils/theme';
+export { default as Appbar } from './components/Appbar';
+export { default as Container } from './components/Container';
+export { default as Drawer } from './components/Drawer';
+export { default as OutlinedInput } from './components/OutlinedInput';
+export { default as Popover } from './components/Popover';
+export { default as Typography } from './components/Typography';
 // Types
-export type { ButtonProps };
+export type { ButtonProps } from './components/Button';
 // Themes and Utils
-export { ThemeProvider, CssBaseline, createTheme };
+export { default as MuiIcons } from './icons';
+export { default as ThemeWrapper } from './utils/themeWrapper';
