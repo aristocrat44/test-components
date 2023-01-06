@@ -56,7 +56,6 @@ jobs:
 
       - name: 'Build project'
         run: |
-          rm -rf ./dist
           yarn cache clean
           yarn build
           yarn version --new-version "${{ steps.bump_version.outputs.tag }}" && yarn publish
