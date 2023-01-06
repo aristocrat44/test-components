@@ -57,10 +57,9 @@ jobs:
           registry-url: https://npm.pkg.github.com/
 
       - name: 'Build project'
-      - run: |
-          rm -rf ./dist
-          yarn cache clean
-          yarn build
-          yarn version --new-version "${{ steps.bump_version.outputs.tag }}" && yarn publish
+      - run: rm -rf ./dist
+      - run: yarn cache clean
+      - run: yarn build
+      - run: yarn version --new-version "${{ steps.bump_version.outputs.tag }}" && yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
