@@ -50,6 +50,7 @@ jobs:
 
       - name: 'Build project'
         run: |
+          npm i -g yarn
           yarn install --frozen-lockfile
           yarn cache clean
           yarn build
