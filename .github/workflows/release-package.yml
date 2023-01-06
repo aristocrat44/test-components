@@ -15,7 +15,7 @@ jobs:
           node-version: 18
       - run: npm i -g yarn
       - run: yarn install --frozen-lockfile
-      env:
+        env:
           NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
 
   publish-gpr:
