@@ -21,6 +21,7 @@ jobs:
           scope: '@aristocrat44'
       - run: npm i -g yarn
       - run: yarn install --frozen-lockfile
+      - run: yarn build
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

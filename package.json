@@ -1,7 +1,7 @@
 {
   "name": "@aristocrat44/test-components",
   "private": false,
-  "version": "0.3.7",
+  "version": "0.3.8",
   "license": "ISC",
   "type": "module",
   "main": "./dist/vite-components.umd.js",
