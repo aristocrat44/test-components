@@ -1,35 +1,24 @@
-name: Miferia Vite Component Package
+name: React Vite Component Package
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, development]
 
 jobs:
-  build:
-    # if: github.event_name == 'push' && github.event.action == 'closed' && github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm i -g yarn
-      - run: yarn install --frozen-lockfile
-      - run: yarn lint
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  publish-gpr:
-    needs: build
+  publish-and-bump-tag:
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: write
     steps:
-      - name: 'Checkout repository'
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://npm.pkg.github.com/
+          scope: '@getmiferia'
 
-      - name: Bump version
+      - name: Bump version and push tag
         id: bump_version
         uses: phips28/gh-action-bump-version@master
         env:
@@ -41,23 +30,14 @@ jobs:
           patch-wording: patch,fixes
           rc-wording: RELEASE,alpha
 
-      - name: 'Setup node and npm registry'
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          registry-url: https://npm.pkg.github.com/
-          scope: '@getmiferia'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
-
-      - name: 'Build project'
-        run: |
+      - run: |
           git config --global user.email "${{ github.actor }}@noreply.github.com"
           git config --global user.name "${{ github.actor }}"
-          npm i -g yarn
-          yarn install --frozen-lockfile
-          yarn cache clean
-          yarn build
-          yarn publish
+          echo "${{ steps.bump_version.outputs.tag }}"
+      - run: npm i -g yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn cache clean
+      - run: yarn build
+      - run: yarn version --new-version "${{ steps.bump_version.outputs.tag }}" && yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
