@@ -20,7 +20,7 @@ jobs:
 
       - name: Bump version and push tag
         id: bump_version
-        uses: phips28/gh-action-bump-version@master
+        uses: getmiferia/github-tag-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
