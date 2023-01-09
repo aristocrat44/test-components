@@ -52,6 +52,8 @@ jobs:
 
       - name: 'Build project'
         run: |
+          git config --global user.email "${{ github.actor }}@noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
           npm i -g yarn
           yarn install --frozen-lockfile
           yarn cache clean
