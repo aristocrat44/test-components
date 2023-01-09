@@ -54,6 +54,6 @@ jobs:
           yarn install --frozen-lockfile
           yarn cache clean
           yarn build
-          yarn version --new-version "${{ steps.bump_version.outputs.tag }}" && yarn publish
+          yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
