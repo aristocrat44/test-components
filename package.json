@@ -1,8 +1,8 @@
 {
-  "name": "@getmiferia/vite.react-components",
+  "name": "@aristocrat44/vite.react-components",
   "private": false,
   "version": "0.3.7",
-  "license": "MIT",
+  "license": "ISC",
   "type": "module",
   "main": "./dist/vite-components.umd.js",
   "module": "./dist/vite-components.es.js",
@@ -59,10 +59,7 @@
     "vitest": "^0.26.2"
   },
   "publishConfig": {
-    "@getmiferia:registry": "https://npm.pkg.github.com"
+    "@aristocrat44:registry": "https://npm.pkg.github.com"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/getmiferia/vite.react-components.git"
-  }
+  "repository": "https://github.com/aristocrat44/test-components"
 }

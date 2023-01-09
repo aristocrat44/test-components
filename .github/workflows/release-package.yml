@@ -18,7 +18,7 @@ jobs:
           node-version: '18'
           registry-url: 'https://npm.pkg.github.com'
           # Defaults to the user or organization that owns the workflow file
-          scope: '@getmiferia'
+          scope: '@aristocrat44'
       - run: npm i -g yarn
       - run: yarn install --frozen-lockfile
       - run: yarn publish
