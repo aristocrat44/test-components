@@ -1,22 +1,31 @@
-name: React Vite Component Package
-
+name: Build tag and push
 on:
   push:
-    branches: [main, develop]
+    branches:
+      - develop
 
 jobs:
-  publish-and-bump-tag:
+  publish_tag_package:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: write
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
         with:
-          node-version: 18
-          registry-url: https://npm.pkg.github.com/
+          fetch-depth: '0'
+
+      - name: Node Setup
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+          registry-url: 'https://npm.pkg.github.com'
           scope: '@getmiferia'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: |
+          npm i -g yarn
+          yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
 
       - name: Bump version and push tag
         id: bump_version
@@ -24,20 +33,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
-        with:
-          minor-wording: add,Adds,new
-          major-wording: MAJOR,cut-major
-          patch-wording: patch,fixes
-          rc-wording: RELEASE,alpha
 
       - run: |
           git config --global user.email "${{ github.actor }}@noreply.github.com"
           git config --global user.name "${{ github.actor }}"
           echo "${{ steps.bump_version.outputs.tag }}"
-      - run: npm i -g yarn
-      - run: yarn install --frozen-lockfile
-      - run: yarn cache clean
       - run: yarn build
-      - run: yarn version --new-version "${{ steps.bump_version.outputs.tag }}" && yarn publish
+      - run: yarn version --no-git-tag-version "${{ steps.bump_version.outputs.tag }}" && yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
